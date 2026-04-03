@@ -14,6 +14,7 @@ export function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
+  const [threadId, setThreadId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -56,6 +57,7 @@ export function ChatWidget() {
           'X-Project-Id': PROJECT_ID,
         },
         body: JSON.stringify({
+          ...(threadId ? { threadId } : {}),
           messages: updatedMessages.map((m) => ({
             role: m.role,
             content: m.content,
@@ -104,6 +106,8 @@ export function ChatWidget() {
                 }
                 return updated;
               });
+            } else if (parsed.type === 'thread' && parsed.threadId) {
+              setThreadId(parsed.threadId);
             } else if (parsed.type === 'error') {
               setMessages((prev) => {
                 const updated = [...prev];
@@ -139,7 +143,7 @@ export function ChatWidget() {
       setIsStreaming(false);
       abortRef.current = null;
     }
-  }, [input, isStreaming, messages]);
+  }, [input, isStreaming, messages, threadId]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
