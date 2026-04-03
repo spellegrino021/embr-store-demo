@@ -39,8 +39,8 @@ cd embr-store-demo
 npm install
 
 # Configure environment
-cp .env .env.local
-# Edit .env.local with your values:
+cp .env.example .env
+# Edit .env with your values:
 #   VITE_API_URL=https://your-embr-instance.com
 #   VITE_PROJECT_ID=your-project-id
 
