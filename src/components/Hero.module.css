@@ -1,0 +1,128 @@
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.tagline {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.1;
+  color: var(--color-dark-roast);
+  margin-bottom: 20px;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--color-text-muted);
+  max-width: 440px;
+  margin-bottom: 32px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  padding: 14px 32px;
+  background: var(--color-dark-roast);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.primaryBtn:hover {
+  background: var(--color-medium-roast);
+  transform: translateY(-1px);
+}
+
+.secondaryBtn {
+  padding: 14px 32px;
+  border: 2px solid var(--color-border);
+  color: var(--color-dark-roast);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-cream), var(--color-crema));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 32px 64px rgba(26, 14, 10, 0.12);
+}
+
+.emoji {
+  font-size: 120px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  .subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .visual {
+    order: -1;
+  }
+
+  .heroImage {
+    width: 220px;
+    height: 220px;
+  }
+
+  .emoji {
+    font-size: 80px;
+  }
+}

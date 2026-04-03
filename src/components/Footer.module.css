@@ -1,0 +1,55 @@
+.footer {
+  background: var(--color-dark-roast);
+  color: var(--color-cream);
+  padding: 48px 24px;
+  margin-top: 40px;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.brand {
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.tagline {
+  font-size: 14px;
+  color: var(--color-crema);
+  margin-top: 4px;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 24px;
+}
+
+.links a {
+  font-size: 14px;
+  color: var(--color-crema);
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: white;
+}
+
+.copy {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.copy a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}

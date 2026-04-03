@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+
+:root {
+  /* Warm coffee palette */
+  --color-espresso: #1a0e0a;
+  --color-dark-roast: #2c1810;
+  --color-medium-roast: #4a2c1a;
+  --color-light-roast: #6b3a2a;
+  --color-crema: #d4a574;
+  --color-cream: #f5e6d3;
+  --color-milk: #faf6f1;
+  --color-white: #ffffff;
+  --color-accent: #c2703e;
+  --color-accent-hover: #a85d33;
+  --color-success: #2d6a4f;
+  --color-text: #1a0e0a;
+  --color-text-muted: #6b5b50;
+  --color-border: #e0d0c0;
+
+  /* Chat widget */
+  --chat-bg: #1e1e2e;
+  --chat-surface: #2a2a3c;
+  --chat-input: #33334a;
+  --chat-text: #e0e0f0;
+  --chat-text-muted: #8888aa;
+  --chat-accent: #c2703e;
+  --chat-user-bg: #3a3a5c;
+  --chat-assistant-bg: #2a2a3c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--color-milk);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}

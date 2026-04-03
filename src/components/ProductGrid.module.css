@@ -1,0 +1,121 @@
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 36px;
+  color: var(--color-dark-roast);
+  margin-bottom: 12px;
+}
+
+.sectionSubtitle {
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--color-white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.25s, transform 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 12px 32px rgba(26, 14, 10, 0.08);
+  transform: translateY(-2px);
+}
+
+.cardVisual {
+  height: 160px;
+  background: linear-gradient(135deg, var(--color-cream), var(--color-milk));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cardEmoji {
+  font-size: 56px;
+}
+
+.roastBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--color-dark-roast);
+  color: var(--color-cream);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.cardBody {
+  padding: 20px;
+}
+
+.cardName {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-dark-roast);
+  margin-bottom: 4px;
+}
+
+.cardOrigin {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.cardNotes {
+  font-size: 14px;
+  color: var(--color-light-roast);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardPrice {
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--color-dark-roast);
+}
+
+.addBtn {
+  padding: 10px 20px;
+  background: var(--color-accent);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  letter-spacing: 0.3px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.addBtn:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
