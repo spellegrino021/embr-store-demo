@@ -82,7 +82,7 @@ app.get('/health', (_req, res) => res.send('ok'));
 
 // Serve static Vite build with SPA fallback
 app.use(express.static(join(__dirname, 'dist')));
-app.get('*', (_req, res) => {
+app.get('/{*splat}', (_req, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'));
 });
 
