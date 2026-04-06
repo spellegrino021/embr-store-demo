@@ -6,9 +6,6 @@ interface Message {
   content: string;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || '';
-const PROJECT_ID = import.meta.env.VITE_PROJECT_ID || '';
-
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -50,11 +47,10 @@ export function ChatWidget() {
     abortRef.current = controller;
 
     try {
-      const response = await fetch(`${API_URL}/public/chat`, {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Project-Id': PROJECT_ID,
         },
         body: JSON.stringify({
           ...(threadId ? { threadId } : {}),
