@@ -11,7 +11,6 @@ export function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
-  const [threadId, setThreadId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -53,7 +52,6 @@ export function ChatWidget() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...(threadId ? { threadId } : {}),
           messages: updatedMessages
             .filter((m) => m.content.trim() !== '')
             .map((m) => ({
@@ -74,6 +72,7 @@ export function ChatWidget() {
 
       const decoder = new TextDecoder();
       let buffer = '';
+      let currentEvent = '';
 
       while (true) {
         const { done, value } = await reader.read();
@@ -84,6 +83,11 @@ export function ChatWidget() {
         buffer = lines.pop() ?? '';
 
         for (const line of lines) {
+          if (line.startsWith('event: ')) {
+            currentEvent = line.slice(7).trim();
+            continue;
+          }
+
           if (!line.startsWith('data: ')) continue;
           const data = line.slice(6);
 
@@ -92,7 +96,7 @@ export function ChatWidget() {
           try {
             const parsed = JSON.parse(data);
 
-            if (parsed.type === 'token' && parsed.content) {
+            if (currentEvent === 'token' && parsed.content) {
               setMessages((prev) => {
                 const updated = [...prev];
                 const last = updated[updated.length - 1];
@@ -104,16 +108,14 @@ export function ChatWidget() {
                 }
                 return updated;
               });
-            } else if (parsed.type === 'thread' && parsed.threadId) {
-              setThreadId(parsed.threadId);
-            } else if (parsed.type === 'error') {
+            } else if (currentEvent === 'error') {
               setMessages((prev) => {
                 const updated = [...prev];
                 const last = updated[updated.length - 1];
                 if (last?.role === 'assistant') {
                   updated[updated.length - 1] = {
                     ...last,
-                    content: `⚠️ ${parsed.error || 'An error occurred'}`,
+                    content: `⚠️ ${parsed.message || 'An error occurred'}`,
                   };
                 }
                 return updated;
@@ -122,6 +124,8 @@ export function ChatWidget() {
           } catch {
             // Skip unparseable SSE lines
           }
+
+          currentEvent = '';
         }
       }
     } catch (err: unknown) {
@@ -141,7 +145,7 @@ export function ChatWidget() {
       setIsStreaming(false);
       abortRef.current = null;
     }
-  }, [input, isStreaming, messages, threadId]);
+  }, [input, isStreaming, messages]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
