@@ -54,10 +54,12 @@ export function ChatWidget() {
         },
         body: JSON.stringify({
           ...(threadId ? { threadId } : {}),
-          messages: updatedMessages.map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
+          messages: updatedMessages
+            .filter((m) => m.content.trim() !== '')
+            .map((m) => ({
+              role: m.role,
+              content: m.content,
+            })),
         }),
         signal: controller.signal,
       });
